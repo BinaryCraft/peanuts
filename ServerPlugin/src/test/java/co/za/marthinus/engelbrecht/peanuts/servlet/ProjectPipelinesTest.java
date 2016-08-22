@@ -53,7 +53,7 @@ public class ProjectPipelinesTest {
     @Test
     public void testSomething() {
         String expected = "test";
-        when(mockRequest.getParameter(Mockito.anyString())).thenReturn(expected);
+        when(mockRequest.getParameter(anyString())).thenReturn(expected);
         assertEquals(expected, mockRequest.getParameter("some string"));
     }
 
@@ -64,5 +64,13 @@ public class ProjectPipelinesTest {
         when(loginUriProvider.getLoginUri(Mockito.any(URI.class))).thenReturn(expectedLoginUri);
         projectPipelinesServlet.doGet(mockRequest, mockResponse);
         verify(mockResponse).sendRedirect(Matchers.contains("/bamboo/login"));
+    }
+
+    @Test
+    public void when_doGet_is_called_and_the_user_is_logged_in_it_should_not_redirect() throws ServletException, IOException {
+        UserKey mockedUserKey = new UserKey("Batman");
+        when(userManager.getRemoteUserKey()).thenReturn(mockedUserKey);
+        projectPipelinesServlet.doGet(mockRequest, mockResponse);
+        verify(mockResponse, never()).sendRedirect(anyString());
     }
 }

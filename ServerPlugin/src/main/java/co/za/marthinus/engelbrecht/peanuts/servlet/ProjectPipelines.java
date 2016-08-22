@@ -36,6 +36,15 @@ public class ProjectPipelines extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        response.sendRedirect(loginUriProvider.getLoginUri(URI.create("/bamboo/")).toASCIIString());
+        boolean isLoggedIn = userManager != null && userManager.getRemoteUserKey() != null;
+
+        if(isLoggedIn) {
+
+        } else {
+            URI returnUri = URI.create("/bamboo/");
+            URI loginUri = loginUriProvider.getLoginUri(returnUri);
+
+            response.sendRedirect(loginUri.toASCIIString());
+        }
     }
 }
