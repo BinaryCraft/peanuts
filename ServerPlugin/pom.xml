@@ -46,6 +46,7 @@
             <version>1</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -114,7 +115,17 @@
                         <!-- Add package to export here -->
                         <Export-Package>co.za.marthinus.engelbrecht.peanuts.api,</Export-Package>
                         <!-- Add package import here -->
-                        <Import-Package>org.springframework.osgi.*;resolution:="optional", org.eclipse.gemini.blueprint.*;resolution:="optional", *</Import-Package>
+                        <Import-Package>
+                            org.springframework.osgi.*;resolution:="optional",
+                            org.eclipse.gemini.blueprint.*;resolution:="optional",
+                            com.sun.jdmk.comm;resolution:=optional,
+                            com.ibm.uvm.tools;resolution:=optional,
+                            javax.jmdns;resolution:=optional,
+                            org.easymock;resolution:=optional,
+                            org.testng;resolution:=optional,
+                            org.testng.annotations;resolution:=optional,
+                            *
+                        </Import-Package>
                         <!-- Ensure plugin is spring powered -->
                         <Spring-Context>*</Spring-Context>
                     </instructions>

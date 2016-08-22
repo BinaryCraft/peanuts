@@ -1,4 +1,4 @@
-package ut.co.za.marthinus.engelbrecht.peanuts;
+package co.za.marthinus.engelbrecht.peanuts;
 
 import org.junit.Test;
 import co.za.marthinus.engelbrecht.peanuts.api.MyPluginComponent;
