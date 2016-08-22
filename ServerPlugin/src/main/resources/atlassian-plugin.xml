@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="peanuts"/>
+  <!-- add our web resources -->
+  <web-resource key="peanuts-resources" name="peanuts Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="peanuts.css" location="/css/peanuts.css"/>
+    <resource type="download" name="peanuts.js" location="/js/peanuts.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>peanuts</context>
+  </web-resource>
+  <web-item name="Project Pipelines by Peanuts" i18n-name-key="project-pipelines-by-peanuts.name" key="project-pipelines-by-peanuts" section="header.global.primary" weight="1000">
+    <description key="project-pipelines-by-peanuts.description">The Project Pipelines by Peanuts Plugin</description>
+    <label key="project-pipelines-by-peanuts.label"/>
+    <link linkId="project-pipelines-by-peanuts-link">/plugins/servlet/project-pipelines-by-peanuts</link>
+  </web-item>
+  <servlet name="Project Pipelines" i18n-name-key="project-pipelines.name" key="project-pipelines" class="co.za.marthinus.engelbrecht.peanuts.servlet.ProjectPipelines">
+    <description key="project-pipelines.description">The Project Pipelines Plugin</description>
+    <url-pattern>/project-pipelines-by-peanuts</url-pattern>
+  </servlet>
+</atlassian-plugin>
