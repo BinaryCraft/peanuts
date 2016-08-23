@@ -42,7 +42,6 @@ public class ProjectPipelines extends HttpServlet{
 
         } else {
             URI returnUri = URI.create(request.getRequestURL().toString());
-            System.out.println(returnUri);
             URI loginURI = loginUriProvider.getLoginUri(returnUri);
             response.sendRedirect(loginURI.toASCIIString());
         }

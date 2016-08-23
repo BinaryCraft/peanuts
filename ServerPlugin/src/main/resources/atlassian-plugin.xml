@@ -22,6 +22,7 @@
     <description key="project-pipelines-by-peanuts.description">The Project Pipelines by Peanuts Plugin</description>
     <label key="project-pipelines-by-peanuts.label"/>
     <link linkId="project-pipelines-by-peanuts-link">/plugins/servlet/project-pipelines-by-peanuts</link>
+    <condition class="co.za.marthinus.engelbrecht.peanuts.LoggedInCondition"/>
   </web-item>
   <servlet name="Project Pipelines" i18n-name-key="project-pipelines.name" key="project-pipelines" class="co.za.marthinus.engelbrecht.peanuts.servlet.ProjectPipelines">
     <description key="project-pipelines.description">The Project Pipelines Plugin</description>

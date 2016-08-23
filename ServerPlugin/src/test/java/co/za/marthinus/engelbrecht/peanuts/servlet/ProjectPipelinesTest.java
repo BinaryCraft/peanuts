@@ -4,7 +4,6 @@ import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.sal.api.auth.LoginUriProvider;
 import com.atlassian.sal.api.user.UserKey;
 import com.atlassian.sal.api.user.UserManager;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
@@ -15,14 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static co.za.marthinus.engelbrecht.peanuts.servlet.ProjectPipeLinesTestHelper.*;
+import static co.za.marthinus.engelbrecht.peanuts.helpers.TestHelper.*;
 
-@Scanned
 public class ProjectPipelinesTest {
 
     @Mock private LoginUriProvider loginUriProvider;
@@ -35,7 +32,6 @@ public class ProjectPipelinesTest {
 
     @Before
     public void setup() {
-        System.out.println(loginUriProvider);
         MockitoAnnotations.initMocks(this);
         mockRequest = mock(HttpServletRequest.class);
         mockResponse = mock(HttpServletResponse.class);
@@ -44,13 +40,6 @@ public class ProjectPipelinesTest {
     @After
     public void tearDown() {
 
-    }
-
-    @Test
-    public void testSomething() {
-        String expected = "test";
-        when(mockRequest.getParameter(anyString())).thenReturn(expected);
-        assertEquals(expected, mockRequest.getParameter("some string"));
     }
 
     @Test

@@ -12,6 +12,10 @@ module.exports = function () {
         await browser.click(`#log-out`);
     }
 
+    async function isPipelinesLinkVisible() {
+        return await client.isVisible('#project-pipelines-by-peanuts-link');
+    }
+
     this.Given(`I'm on the home page`, function () {
         return browser.url('http://marthinuss-macbook-pro.local:6990/bamboo/');
     });
@@ -55,5 +59,11 @@ module.exports = function () {
         expect(currentUrl).toContain('/bamboo/plugins/servlet/project-pipelines-by-peanuts');
     });
 
-};
+    this.Then(`I should NOT see the Pipelines tab`, async function () {
+        expect(await isPipelinesLinkVisible()).toEqual(false);
+    });
 
+    this.Then(`I should see the Pipelines tab`, async function () {
+        expect(await isPipelinesLinkVisible()).toEqual(true);
+    })
+};

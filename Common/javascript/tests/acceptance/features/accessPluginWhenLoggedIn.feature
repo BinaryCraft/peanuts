@@ -1,3 +1,4 @@
+@focus
 Feature: As user I want to be able to access the plugin
 
   Scenario:
@@ -12,7 +13,6 @@ Feature: As user I want to be able to access the plugin
     When I click on the Pipelines tab
     Then I should be navigated to the Pipelines plugin page
 
-  @focus
   Scenario:
     Given I'm on the home page
     And I'm NOT logged in
@@ -20,3 +20,13 @@ Feature: As user I want to be able to access the plugin
     And I was redirected to login
     When I log in
     Then I should be navigated to the Pipelines plugin page
+
+  Scenario:
+    Given I'm on the home page
+    And I'm NOT logged in
+    Then I should NOT see the Pipelines tab
+
+  Scenario:
+    Given I'm on the home page
+    And I'm logged in
+    Then I should see the Pipelines tab
