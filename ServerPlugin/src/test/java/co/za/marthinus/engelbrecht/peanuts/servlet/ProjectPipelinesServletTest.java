@@ -6,10 +6,9 @@ import com.atlassian.sal.api.user.UserManager;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,14 +18,17 @@ import java.net.URI;
 
 import static org.mockito.Mockito.*;
 import static co.za.marthinus.engelbrecht.peanuts.helpers.TestHelper.*;
+import static co.za.marthinus.engelbrecht.peanuts.PluginProperties.RESOURCE_ROOT;
 
 public class ProjectPipelinesServletTest {
 
-    @Mock
-    private LoginUriProvider loginUriProvider;
+    private final String indexHtmlPath = RESOURCE_ROOT + "index.html";
+    @Mock private LoginUriProvider loginUriProvider;
     @Mock private UserManager userManager;
     @Mock private HttpServletRequest mockRequest;
     @Mock private HttpServletResponse mockResponse;
+
+    private final UserKey mockedUserKey = new UserKey("Batman");
 
     @InjectMocks
     private ProjectPipelinesServlet projectPipelinesServlet = new ProjectPipelinesServlet();
@@ -59,9 +61,19 @@ public class ProjectPipelinesServletTest {
 
     @Test
     public void when_doGet_is_called_and_the_user_is_logged_in_it_should_not_redirect() throws ServletException, IOException {
-        UserKey mockedUserKey = new UserKey("Batman");
         setupRemoteUserKey(userManager, mockedUserKey);
+        RequestDispatcher view = mock(RequestDispatcher.class);
+        when(mockRequest.getRequestDispatcher(Matchers.eq(indexHtmlPath))).thenReturn(view);
         projectPipelinesServlet.doGet(mockRequest, mockResponse);
         verify(mockResponse, never()).sendRedirect(anyString());
+    }
+
+    @Test
+    public void when_doGet_is_called_and_the_user_is_logged_in_it_should_return_the_index_html() throws ServletException, IOException {
+        setupRemoteUserKey(userManager, mockedUserKey);
+        RequestDispatcher view = mock(RequestDispatcher.class);
+        when(mockRequest.getRequestDispatcher(Matchers.eq(indexHtmlPath))).thenReturn(view);
+        projectPipelinesServlet.doGet(mockRequest, mockResponse);
+        verify(view, times(1)).forward(mockRequest, mockResponse);
     }
 }

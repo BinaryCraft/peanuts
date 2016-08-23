@@ -6,7 +6,6 @@ import com.atlassian.sal.api.auth.LoginUriProvider;
 import com.atlassian.sal.api.user.UserManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
+
+import static co.za.marthinus.engelbrecht.peanuts.PluginProperties.RESOURCE_ROOT;
 
 @Scanned
 public class ProjectPipelinesServlet extends HttpServlet{
@@ -39,7 +40,8 @@ public class ProjectPipelinesServlet extends HttpServlet{
         boolean isLoggedIn = userManager != null && userManager.getRemoteUserKey() != null;
 
         if(isLoggedIn) {
-
+            RequestDispatcher view = request.getRequestDispatcher(RESOURCE_ROOT + "index.html");
+            view.forward(request, response);
         } else {
             URI returnUri = URI.create(request.getRequestURL().toString());
             URI loginURI = loginUriProvider.getLoginUri(returnUri);
