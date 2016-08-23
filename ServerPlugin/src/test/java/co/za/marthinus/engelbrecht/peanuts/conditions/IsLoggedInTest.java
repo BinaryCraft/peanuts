@@ -1,6 +1,6 @@
-package co.za.marthinus.engelbrecht.peanuts;
+package co.za.marthinus.engelbrecht.peanuts.conditions;
 
-import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
+import co.za.marthinus.engelbrecht.peanuts.conditions.LoggedInCondition;
 import com.atlassian.sal.api.user.UserKey;
 import com.atlassian.sal.api.user.UserManager;
 import org.junit.Before;

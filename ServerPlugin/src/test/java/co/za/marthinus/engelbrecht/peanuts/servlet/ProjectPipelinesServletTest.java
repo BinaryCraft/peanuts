@@ -1,13 +1,14 @@
 package co.za.marthinus.engelbrecht.peanuts.servlet;
 
-import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.sal.api.auth.LoginUriProvider;
 import com.atlassian.sal.api.user.UserKey;
 import com.atlassian.sal.api.user.UserManager;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,19 +17,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static co.za.marthinus.engelbrecht.peanuts.helpers.TestHelper.*;
 
-public class ProjectPipelinesTest {
+public class ProjectPipelinesServletTest {
 
-    @Mock private LoginUriProvider loginUriProvider;
+    @Mock
+    private LoginUriProvider loginUriProvider;
     @Mock private UserManager userManager;
     @Mock private HttpServletRequest mockRequest;
     @Mock private HttpServletResponse mockResponse;
 
     @InjectMocks
-    private ProjectPipelines projectPipelinesServlet = new ProjectPipelines();
+    private ProjectPipelinesServlet projectPipelinesServlet = new ProjectPipelinesServlet();
 
     @Before
     public void setup() {

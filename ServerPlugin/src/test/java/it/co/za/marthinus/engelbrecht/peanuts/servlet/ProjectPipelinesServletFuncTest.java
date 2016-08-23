@@ -14,7 +14,7 @@ import java.io.IOException;
 import static org.junit.Assert.*;
 
 
-public class ProjectPipelinesFuncTest {
+public class ProjectPipelinesServletFuncTest {
 
     HttpClient httpClient;
     String baseUrl;

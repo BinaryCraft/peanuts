@@ -16,19 +16,19 @@ import java.io.IOException;
 import java.net.URI;
 
 @Scanned
-public class ProjectPipelines extends HttpServlet{
-    private static final Logger log = LoggerFactory.getLogger(ProjectPipelines.class);
+public class ProjectPipelinesServlet extends HttpServlet{
+    private static final Logger log = LoggerFactory.getLogger(ProjectPipelinesServlet.class);
 
     private UserManager userManager;
     private LoginUriProvider loginUriProvider;
 
-    public ProjectPipelines(){
+    public ProjectPipelinesServlet(){
         this.loginUriProvider = null;
         this.userManager = null;
     }
 
     @Inject
-    public ProjectPipelines(@ComponentImport  final LoginUriProvider loginUriProvider, @ComponentImport final UserManager userManager){
+    public ProjectPipelinesServlet(@ComponentImport  final LoginUriProvider loginUriProvider, @ComponentImport final UserManager userManager){
         this.userManager = userManager;
         this.loginUriProvider = loginUriProvider;
     }

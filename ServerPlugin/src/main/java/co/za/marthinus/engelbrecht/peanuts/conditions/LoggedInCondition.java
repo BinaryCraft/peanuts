@@ -1,4 +1,4 @@
-package co.za.marthinus.engelbrecht.peanuts;
+package co.za.marthinus.engelbrecht.peanuts.conditions;
 
 import com.atlassian.plugin.PluginParseException;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
