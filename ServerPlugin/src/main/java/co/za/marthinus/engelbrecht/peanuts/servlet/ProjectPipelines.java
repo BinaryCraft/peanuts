@@ -41,10 +41,10 @@ public class ProjectPipelines extends HttpServlet{
         if(isLoggedIn) {
 
         } else {
-            URI returnUri = URI.create("/bamboo/");
-            URI loginUri = loginUriProvider.getLoginUri(returnUri);
-
-            response.sendRedirect(loginUri.toASCIIString());
+            URI returnUri = URI.create(request.getRequestURL().toString());
+            System.out.println(returnUri);
+            URI loginURI = loginUriProvider.getLoginUri(returnUri);
+            response.sendRedirect(loginURI.toASCIIString());
         }
     }
 }

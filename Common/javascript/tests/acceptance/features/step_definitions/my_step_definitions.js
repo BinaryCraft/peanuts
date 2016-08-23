@@ -1,17 +1,40 @@
 module.exports = function () {
+    const adminSelector = `img[alt="Admin"]`;
+
+    async function login() {
+        await browser.setValue("#loginForm_os_username", "admin");
+        await browser.setValue("#loginForm_os_password", "admin");
+        await browser.submitForm("#loginForm");
+    }
+
+    async function logOut() {
+        await browser.click(adminSelector);
+        await browser.click(`#log-out`);
+    }
+
     this.Given(`I'm on the home page`, function () {
         return browser.url('http://marthinuss-macbook-pro.local:6990/bamboo/');
     });
 
-    this.Given(`I'm NOT logged in`, function () {
+    this.Given(`I'm NOT logged in`, async function () {
+        const loggedIn = await client.isExisting(adminSelector);
 
+        if(loggedIn) {
+            await logOut();
+        }
     });
 
     this.Given(`I'm logged in`, async function () {
         await browser.click("#login");
-        await browser.setValue("#loginForm_os_username", "admin");
-        await browser.setValue("#loginForm_os_password", "admin");
-        await browser.submitForm("#loginForm");
+        await login();
+    });
+
+    this.Given(`I was redirected to login`, function () {
+
+    });
+
+    this.When(`I log in`, async function () {
+        await login()
     });
 
     this.When(`I navigate to the plugin`, async function () {
