@@ -14,6 +14,7 @@
   <web-resource key="pipelines-resources" name="Pipelines Web Resources">
     <dependency>com.atlassian.auiplugin:ajs</dependency>
     <resource type="download" name="index.html" location="/html/index.html"/>
+    <resource type="download" name="app.js" location="/js/app.js"/>
     <context>peanuts</context>
   </web-resource>
   <web-item name="Project Pipelines by Peanuts" i18n-name-key="project-pipelines-by-peanuts.name" key="project-pipelines-by-peanuts" section="header.global.primary" weight="1000">

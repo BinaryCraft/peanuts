@@ -3,13 +3,19 @@
     "target": "es5",
     "module": "system",
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": false,
     "experimentalDecorators": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "sourceMap": true
   },
   "exclude": [
-    ".",
-    "node_modules"
+    "jspm_packages",
+    "node_modules",
+    "source/**/*.steps.ts",
+    "compiled"
   ],
-  "compileOnSave": false
+  "compileOnSave": false,
+  "angularCompilerOptions": {
+    "genDir": "compiled"
+  }
 }

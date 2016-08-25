@@ -3,3 +3,9 @@
 node_modules
 jspm_packages
 target
+*.metadata.json
+*.ngfactory.ts
+*.js.map
+Common/javascript/source/**/*.js
+ServerPlugin/src/main/resources/js/
+bddJsonReport.json
